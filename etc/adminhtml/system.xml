@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2023-present JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="jajuma" translate="label" class="jajuma-tab" sortOrder="10">
+            <label>Jajuma</label>
+        </tab>
+        <section id="power_toys" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Power Toys</label>
+            <tab>jajuma</tab>
+            <resource>Jajuma_PotNews::config_jajuma_powertoy</resource>
+            <group id="news" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>News</label>
+                <field id="is_enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="feed" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Additional Feed</label>
+                    <depends>
+                        <field id="is_enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[
+                        Separated by comma(,). Eg:<br/>
+                        https://mage-os.org/feed/, https://www.hyva.io/blog/feed/index/type/latest_posts/store_id/1/, https://www.jajuma.de/en/blog/rss/feed
+                    ]]>
+                    </comment>
+                </field>
+                <field id="limit" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Limit News</label>
+                    <depends>
+                        <field id="is_enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[
+                        Leave empty to show all news
+                    ]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

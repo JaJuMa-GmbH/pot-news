@@ -1,0 +1,97 @@
+<?php
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2023 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+use Jajuma\PotNews\Block\PowerToys\News;
+use Magento\Framework\Escaper;
+/** @var News $block */
+/** @var Escaper $escaper */
+$listNews = $block->getNews();
+?>
+
+<div class="jajuma-news-wrapper">
+    <?php if(count($listNews) > 0): ?>
+        <span class="powertoys-widget-title jajuma-news-title"><?= 'News' ?></span>
+        <div class="jajuma-list-news">
+            <?php foreach($listNews as $item): ?>
+                <div class="news-item">
+                    <a class="news-item-title" target="_blank" href="<?= $item['url'] ?>" title="<?= $item['title'] ?>"><?= $item['title'] ?></a>
+                    <div class="news-item-description"><?= $block->stripTags(preg_replace('/<style>.*<\/style>/s', '', $item['description'])) ?></div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <div id="newbg"></div>
+</div>
+
+<style>
+.powertoys-dashboard-widgets .widget-item[data-widget-id="default_news"] {
+    position: relative;
+    max-height: 200px;
+    min-width: 300px;
+    max-width: 350px;
+    overflow: hidden;
+    background-color: #000;
+}
+.powertoys-dashboard-widgets .widget-item[data-widget-id="default_news"] #newbg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(<?= $this->getViewFileUrl('Jajuma_PotNews::images/newsbg.jpg') ?>);
+    background-size: contain;
+    top: 0;
+    left: 0;
+    opacity: .3;
+}
+.jajumaLightMode .powertoys-dashboard-widgets .widget-item[data-widget-id="default_news"] #newbg {
+    opacity: 1;
+    filter: brightness(1.2);
+}
+.powertoys-dashboard-widgets .widget-item[data-widget-id="default_news"] .jajuma-news-wrapper {
+    height: 100%;
+}
+.powertoys-dashboard-widgets .widget-item[data-widget-id="default_news"] .jajuma-news-title {
+    background: #f5a75a;
+    color: #252525;
+    z-index: 1;
+    position: relative;
+}
+.powertoys-dashboard-widgets .widget-item[data-widget-id="default_news"] .jajuma-list-news {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: calc(100% - 32px);
+    border-radius: 8px;
+    padding-right: 8px;
+    z-index: 1;
+}
+.powertoys-dashboard-widgets .widget-item[data-widget-id="default_news"] .jajuma-list-news .news-item {
+    margin-bottom: 10px;
+    background: #ffffffed;
+    padding: 8px;
+    border-radius: 8px;
+}
+.powertoys-dashboard-widgets .widget-item[data-widget-id="default_news"] .jajuma-list-news .news-item .news-item-title {
+    font-size: 12px;
+    font-weight: 700;
+    display: block;
+    line-height: 14px;
+    color: #f57c00;
+}
+.powertoys-dashboard-widgets .widget-item[data-widget-id="default_news"] .jajuma-list-news .news-item .news-item-title:hover {
+    text-decoration: underline;
+}
+.powertoys-dashboard-widgets .widget-item[data-widget-id="default_news"] .jajuma-list-news .news-item .news-item-description {
+    margin: 5px 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    position: relative;
+    max-height: 36px;
+    overflow: hidden;
+    font-size: 10px;
+    line-height: 12px;
+}
+</style>

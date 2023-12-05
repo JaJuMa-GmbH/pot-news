@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2023 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+
+<powertoys xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Jajuma_PowerToys:etc/jajuma_powertoys.xsd">
+    <!--news widget -->
+    <dashboard id="default_news" class="Jajuma\PotNews\Block\PowerToys\News">
+        <label translate="true">News Widget</label>
+        <arguments>
+            <argument name="enable">true</argument>
+            <argument name="template">Jajuma_PotNews::custom_widget/news.phtml</argument>
+            <argument name="lazyload">true</argument>
+            <argument name="cache_lifetime">30</argument>
+            <argument name="sort_order">40</argument>
+            <argument name="acl_resource"></argument>
+        </arguments>
+    </dashboard>
+</powertoys>
